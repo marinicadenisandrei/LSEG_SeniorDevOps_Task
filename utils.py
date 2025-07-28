@@ -1,5 +1,6 @@
 from datetime import datetime
 from collections import defaultdict
+from termcolor import colored
 
 TIME_FORMAT = "%H:%M:%S"
 
