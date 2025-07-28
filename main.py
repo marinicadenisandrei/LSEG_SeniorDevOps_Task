@@ -1,4 +1,4 @@
-from utils import parse_log_file
+from utils import parse_log_file, analyze_jobs
 import os
 
 if __name__ == "__main__":
@@ -9,3 +9,4 @@ if __name__ == "__main__":
         exit()
 
     jobs = parse_log_file(log_path)
+    analyze_jobs(jobs)
