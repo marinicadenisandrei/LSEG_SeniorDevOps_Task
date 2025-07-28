@@ -31,7 +31,7 @@ def parse_log_file(log_path):
 
 def analyze_jobs(jobs):
     """
-    Calculates durations and prints warnings/errors based on thresholds in tabular format.
+    Calculates durations and prints warnings/errors based on thresholds in a color-coded tabular format.
     """
     results = []
 
@@ -40,18 +40,19 @@ def analyze_jobs(jobs):
         end = job.get("end")
 
         if not start or not end:
-            results.append([key, "Incomplete", "-", "[INFO] Incomplete log"])
+            status = colored("[INFO] Incomplete log", "cyan")
+            results.append([key, "Incomplete", "-", status])
             continue
 
         duration = end - start
         minutes = duration.total_seconds() / 60
 
         if minutes > 10:
-            status = "[ERROR]"
+            status = colored("[ERROR]", "red")
         elif minutes > 5:
-            status = "[WARNING]"
+            status = colored("[WARNING]", "yellow")
         else:
-            status = "[OK]"
+            status = colored("[OK]", "green")
 
         results.append([key, f"{duration}", f"{minutes:.2f}", status])
 
